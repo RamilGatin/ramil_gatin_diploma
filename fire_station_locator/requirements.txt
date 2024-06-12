@@ -1,0 +1,10 @@
+streamlit
+folium
+streamlit-folium
+scikit-learn
+pandas
+glob2
+requests
+zipfile36
+wget
+loguru
