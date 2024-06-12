@@ -42,7 +42,10 @@ def main():
             click_lat = st.number_input("Широта", value=selected_coord[0])
             click_lon = st.number_input("Долгота", value=selected_coord[1])
             radius = st.slider(
-                "Выберите радиус интересующий зоны(км)", min_value=10, max_value=100, value=50
+                "Выберите радиус интересующий зоны(км)",
+                min_value=10,
+                max_value=100,
+                value=50,
             )
 
         st.write("Кликните на карту, чтобы выбрать точку для анализа")
@@ -131,14 +134,14 @@ def main():
                 recommendation = "Установка пожарной станции не требуется"
                 reason = "Низкая вероятность пожара на основе исторических данных."
                 if proba > 0.5 or (
-                    abs(click_lat - center_lat) < 0.5
-                    and abs(click_lon - center_lon) < 0.5
+                    abs(click_lat - center_lat) < 0.3
+                    and abs(click_lon - center_lon) < 0.3
                 ):
                     recommendation = "Рекомендуется установить пожарную станцию"
                     reason = "Высокая вероятность пожара на основе исторических данных или близость к центру масс пожаров."
-                # st.write(
-                #     f"Оптимальность установки пожарной станции: {proba:.2f}"
-                # )
+                st.write(
+                    f"Оценка оптимальность установки пожарной части в выбранной точке: {proba:.2f}"
+                )
                 st.write(f"Причина: {reason}")
                 if recommendation.startswith("Рекомендуется"):
                     st.success(recommendation)
